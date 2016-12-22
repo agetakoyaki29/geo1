@@ -11,7 +11,7 @@ abstract class Dim2Wrapper(protected val wrapped: Dim2)
 extends Dim2 {
   override def x = wrapped.x
   override def y = wrapped.y
-  
+
   override def factory: Dim2Factory[_ <: Dim2Wrapper] = Dim2Wrapper
 
   def atom: Dim2 = wrapped match {
@@ -20,8 +20,5 @@ extends Dim2 {
     case _ =>
       wrapped
   }
-  
-  override def toString = this.getClass.getSimpleName + s"(${x}, ${y})" // MIXME plz delete
-  
-}
 
+}

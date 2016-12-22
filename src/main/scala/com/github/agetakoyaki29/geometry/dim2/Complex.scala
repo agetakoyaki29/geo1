@@ -12,23 +12,23 @@ object Complex extends Dim2Factory[Complex] {
 class Complex protected(override protected val wrapped: Dim2) extends Dim2Wrapper(wrapped) {
 
   override def factory: Dim2Factory[_ <: Complex] = Complex
-  
+
   def unary_+(): Complex = factory(this)
   def unary_-(): Complex = mapD2(-_).asInstanceOf[Complex]
   def unary_~(): Complex = factory(x, -y) // conjugate
-  
+
   def +(op: Complex): Complex = factory(x+op.x, y+op.y)
   def -(op: Complex): Complex = factory(x-op.x, y-op.y)
-  
+
   def *(d: Double): Complex = factory(x*d, y*d)
   def *(op: Complex): Complex = factory(x*op.x - y*op.y, x*op.y + y*op.x)
-  
+
   def /(d: Double): Complex = factory(x/d, y/d)
   def /(op: Complex): Complex = (this * ~op) / op.normSqr
-  
+
   def norm: Double = Math.sqrt(normSqr)
   def normSqr: Double = x*x + y*y
-  
-  // FIXME plz be non comment
-//  override def toString = this.getClass.getSimpleName + s"(${x}, ${y}i)"
+
+  override def toString = this.getClass.getSimpleName + s"(${x}, ${y}i)"
+	
 }
