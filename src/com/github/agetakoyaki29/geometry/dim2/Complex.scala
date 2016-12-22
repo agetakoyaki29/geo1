@@ -1,7 +1,7 @@
 package com.github.agetakoyaki29.geometry.dim2
 
 
-object Complex {
+object Complex extends Dim2Factory[Complex] {
   def apply(d: Double) = new Complex(Dim2(d, 0))
   def apply(x: Double, y: Double) = new Complex(Dim2(x, y))
   def apply(dim2: Dim2) = new Complex(dim2)
@@ -10,19 +10,20 @@ object Complex {
 }
 
 class Complex protected(override protected val wrapped: Dim2) extends Dim2Wrapper(wrapped) with Dim2 {
-  override def mapD2(f: Double => Double) = Complex(super[Dim2].mapD2(f))
 
-  def unary_+(): Complex = this
-  def unary_-(): Complex = mapD2(-_)
-  def unary_~(): Complex = Complex(x, -y) // conjugate
+  override def factory: Dim2Factory[_ <: Complex] = Complex
   
-  def +(op: Dim2): Complex = Complex(x+op.x, y+op.y)
-  def -(op: Dim2): Complex = Complex(x-op.x, y-op.y)
+  def unary_+(): Complex = factory(this)
+  def unary_-(): Complex = mapD2(-_).asInstanceOf[Complex]
+  def unary_~(): Complex = factory(x, -y) // conjugate
   
-  def *(d: Double): Complex = Complex(x*d, y*d)
-  def *(op: Dim2): Complex = Complex(x*op.x - y*op.y, x*op.y + y*op.x)
+  def +(op: Dim2): Complex = factory(x+op.x, y+op.y)
+  def -(op: Dim2): Complex = factory(x-op.x, y-op.y)
   
-  def /(d: Double): Complex = Complex(x/d, y/d)
+  def *(d: Double): Complex = factory(x*d, y*d)
+  def *(op: Dim2): Complex = factory(x*op.x - y*op.y, x*op.y + y*op.x)
+  
+  def /(d: Double): Complex = factory(x/d, y/d)
   def /(op: Dim2): Complex = this / Complex(op)
   def /(op: Complex): Complex = (this * ~op) / op.sqrNorm  // TODO instead of implisit
   

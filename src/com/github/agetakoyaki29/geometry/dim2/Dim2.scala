@@ -3,7 +3,8 @@ package com.github.agetakoyaki29.geometry.dim2
 import com.github.agetakoyaki29.geometry.Delta
 
 
-object Dim2 {
+object Dim2 extends Dim2Factory[Dim2] {
+  def apply(d: Double): Dim2 = new SimpleD2(d, d)
   def apply(x: Double, y: Double): Dim2 = new SimpleD2(x, y)
   def apply(op: Dim2): Dim2 = new SimpleD2(op.x, op.y)
  
@@ -20,20 +21,20 @@ trait Dim2 extends IndexedSeq[Double] {
     f(x)
     f(y)
   }
-  
   override def apply(idx: Int): Double = idx match {
     case 0 => x
     case 1 => y
   }
-  
   override def length: Int = 2
 
   // ----
   
+  def factory: Dim2Factory[_ <: Dim2] = Dim2
+  
   def isZero: Boolean = x==0 && y==0
   def isZeroWithDelta: Boolean = Delta.eq0(x) && Delta.eq0(y)
   
-  def mapD2(f: Double => Double): Dim2 = Dim2(f(x), f(y))
+  def mapD2(f: Double => Double): Dim2 = factory(f(x), f(y))
 
   // -- std --
 
