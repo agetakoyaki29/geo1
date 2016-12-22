@@ -15,7 +15,7 @@ object Main {
     println(Vector2(dim2))
     println(~Complex(dim2))
     println(Vector2(dim2).abs)
-    println(Math.toDegrees(Point2(1,1).angle))
+    println(Math.toDegrees(Dir2(1,1).angle))
     println(Dir2(dim2).normalize)
   }
 }

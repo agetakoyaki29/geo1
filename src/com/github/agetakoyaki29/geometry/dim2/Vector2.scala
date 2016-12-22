@@ -10,8 +10,7 @@ object Vector2 extends Dim2Factory[Vector2] {
   def apply(dim2: Dim2) = new Vector2(dim2)
 }
 
-class Vector2 protected(override protected val wrapped: Dim2)
-extends Dim2Wrapper(wrapped) with Dim2 {
+class Vector2 protected(override protected val wrapped: Dim2) extends Dim2Wrapper(wrapped) {
   
   override def factory: Dim2Factory[_ <: Vector2] = Vector2
   
@@ -20,15 +19,15 @@ extends Dim2Wrapper(wrapped) with Dim2 {
   
   def abs: Vector2 = mapD2(Math.abs(_)).asInstanceOf[Vector2]
   
-  def +(op: Dim2): Vector2 = factory(x+op.x, y+op.y)
-  def -(op: Dim2): Vector2 = factory(x-op.x, y-op.y)
+  def +(op: Vector2): Vector2 = factory(x+op.x, y+op.y)
+  def -(op: Vector2): Vector2 = factory(x-op.x, y-op.y)
   
   def *(d: Double): Vector2 = factory(x*d, y*d)
   def /(d: Double): Vector2 = factory(x/d, y/d)
   
-  def dot(op: Dim2) = x*op.x + y*op.y
+  def dot(op: Vector2) = x*op.x + y*op.y
 
-  def cross(op: Dim2) = x*op.y - y*op.x
+  def cross(op: Vector2) = x*op.y - y*op.x
   
   def norm: Double = Math.sqrt(sqrNorm)
   def sqrNorm: Double = x*x + y*y

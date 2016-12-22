@@ -13,9 +13,12 @@ object Dim2 extends Dim2Factory[Dim2] {
   val E2 = this(0, 1)
 }
 
+
 trait Dim2 extends IndexedSeq[Double] {
   def x: Double
   def y: Double
+  
+  // -- IndexedSeq --
   
   override def foreach[U](f: Double => U): Unit = {
     f(x)
@@ -53,5 +56,6 @@ trait Dim2 extends IndexedSeq[Double] {
 }
 
 
-final class SimpleD2(override val x: Double, override val y: Double) extends Dim2
+final class SimpleD2(override val x: Double, override val y: Double) extends Dim2 {
+}
 

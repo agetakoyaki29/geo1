@@ -9,7 +9,7 @@ object Complex extends Dim2Factory[Complex] {
   val I = this(0, 1)
 }
 
-class Complex protected(override protected val wrapped: Dim2) extends Dim2Wrapper(wrapped) with Dim2 {
+class Complex protected(override protected val wrapped: Dim2) extends Dim2Wrapper(wrapped) {
 
   override def factory: Dim2Factory[_ <: Complex] = Complex
   
@@ -17,15 +17,14 @@ class Complex protected(override protected val wrapped: Dim2) extends Dim2Wrappe
   def unary_-(): Complex = mapD2(-_).asInstanceOf[Complex]
   def unary_~(): Complex = factory(x, -y) // conjugate
   
-  def +(op: Dim2): Complex = factory(x+op.x, y+op.y)
-  def -(op: Dim2): Complex = factory(x-op.x, y-op.y)
+  def +(op: Complex): Complex = factory(x+op.x, y+op.y)
+  def -(op: Complex): Complex = factory(x-op.x, y-op.y)
   
   def *(d: Double): Complex = factory(x*d, y*d)
-  def *(op: Dim2): Complex = factory(x*op.x - y*op.y, x*op.y + y*op.x)
+  def *(op: Complex): Complex = factory(x*op.x - y*op.y, x*op.y + y*op.x)
   
   def /(d: Double): Complex = factory(x/d, y/d)
-  def /(op: Dim2): Complex = this / Complex(op)
-  def /(op: Complex): Complex = (this * ~op) / op.sqrNorm  // TODO instead of implisit
+  def /(op: Complex): Complex = (this * ~op) / op.sqrNorm
   
   def norm: Double = Math.sqrt(sqrNorm)
   def sqrNorm: Double = x*x + y*y

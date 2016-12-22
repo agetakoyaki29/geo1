@@ -20,5 +20,6 @@ extends Dim2 {
     case wrapper: Dim2Wrapper => wrapper.atom
     case _ => wrapped
   }
+  
 }
 
