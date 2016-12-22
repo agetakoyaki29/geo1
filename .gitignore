@@ -1,4 +1,10 @@
 
+# SBT
+target/
+project/
+.tmpBin/
+
+# Eclipse
 bin/
 .settings/
 .project
