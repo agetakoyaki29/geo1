@@ -20,14 +20,8 @@ trait Dim2 extends IndexedSeq[Double] {
   
   // -- IndexedSeq --
   
-  override def foreach[U](f: Double => U): Unit = {
-    f(x)
-    f(y)
-  }
-  override def apply(idx: Int): Double = idx match {
-    case 0 => x
-    case 1 => y
-  }
+  override def foreach[U](f: Double => U): Unit = { f(x); f(y) }
+  override def apply(idx: Int): Double = idx match { case 0 => x; case 1 => y }
   override def length: Int = 2
 
   // ----
@@ -41,7 +35,7 @@ trait Dim2 extends IndexedSeq[Double] {
 
   // -- std --
 
-  override def toString = s"Dim2(${x}, ${y})"
+  override def toString = this.getClass.getSimpleName + s"(${x}, ${y})"
 
   override def equals(op: Any) = op match {
     case dim2: Dim2 => x==dim2.x && y==dim2.y

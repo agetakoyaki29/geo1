@@ -29,5 +29,6 @@ class Complex protected(override protected val wrapped: Dim2) extends Dim2Wrappe
   def norm: Double = Math.sqrt(normSqr)
   def normSqr: Double = x*x + y*y
   
-//  override def toString(): String = this.getClass.getSimpleName + s"(${x}, ${y}i)"
+  // FIXME plz be non comment
+//  override def toString = this.getClass.getSimpleName + s"(${x}, ${y}i)"
 }

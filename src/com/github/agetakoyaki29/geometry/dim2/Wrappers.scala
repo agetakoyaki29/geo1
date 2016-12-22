@@ -13,13 +13,15 @@ extends Dim2 {
   override def y = wrapped.y
   
   override def factory: Dim2Factory[_ <: Dim2Wrapper] = Dim2Wrapper
-  
-  override def toString = this.getClass.getSimpleName + s"(${x}, ${y})"
 
   def atom: Dim2 = wrapped match {
-    case wrapper: Dim2Wrapper => wrapper.atom
-    case _ => wrapped
+    case wrapper: Dim2Wrapper =>
+      wrapper.atom
+    case _ =>
+      wrapped
   }
+  
+  override def toString = this.getClass.getSimpleName + s"(${x}, ${y})" // MIXME plz delete
   
 }
 
