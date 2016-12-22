@@ -18,6 +18,12 @@ class Dir2 protected(override protected val wrapped: Dim2) extends Point2(wrappe
   override def dist(op: Point2): Double = Math.sqrt(distSqr(op))
   override def distSqr(op: Point2): Double = ???
   
+  /**
+   * nearest point
+   * pt + (this sinTo pt * pt.norm) * this.normal.normalize
+   * @param pt
+   * @return
+   */
   def nearest(pt: Point2): Point2 = ???
   
   def isOn(pt: Point2): Boolean = ???
@@ -28,7 +34,7 @@ class Dir2 protected(override protected val wrapped: Dim2) extends Point2(wrappe
   def normal: Dir2 = factory(-y, x)
   
   def isNormal(op: Dir2): Boolean = dot(op) == 0
-  def isNormalWithDelta(op: Dir2): Boolean = Delta.eq0(dot(op))
+  def isNormalWithDelta(op: Dir2): Boolean = Delta.eq0(dot(op))  // TODO fix eq0
   
   def isParallel(op: Dir2): Boolean = cross(op) == 0
   def isParallelWithDelta(op: Dir2): Boolean = Delta.eq0(cross(op))

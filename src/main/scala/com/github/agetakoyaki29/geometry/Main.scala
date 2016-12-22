@@ -9,6 +9,7 @@ import com.github.agetakoyaki29.geometry.line.Dir2
 
 object Main {
   def main(args: Array[String]): Unit = {
+    println(Double.MinPositiveValue)
     println("geo")
     val dim2 = Dim2(1, -1)
     println(dim2)

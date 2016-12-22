@@ -1,0 +1,10 @@
+
+* remove Delta.eq0(d: Double)
+delta usecase
+
+* make test data
+
+* implemente dir2
+
+* rename WithDelta func
+instead of Strict or Ideal
