@@ -1,15 +1,14 @@
 package com.github.agetakoyaki29.geometry.dim2
 
 
-object Vector2 extends Dim2WrapperComp {
+object Vector2 {
   def apply(d: Double) = new Vector2(Dim2(d, d))
   def apply(x: Double, y: Double) = new Vector2(Dim2(x, y))
   def apply(dim2: Dim2) = new Vector2(dim2)
 }
 
 class Vector2 protected(override protected val wrapped: Dim2) extends Dim2Wrapper(wrapped) with Dim2 {
-  def comp = Vector2
-  override def mapD2(f: Double => Double) = comp(super[Dim2].mapD2(f))
+  override def mapD2(f: Double => Double) = Vector2(super[Dim2].mapD2(f))
   
   def unary_+(): Vector2 = this
   def unary_-(): Vector2 = mapD2(-_)

@@ -1,7 +1,7 @@
 package com.github.agetakoyaki29.geometry.dim2
 
 
-object Complex extends Dim2WrapperComp {
+object Complex {
   def apply(d: Double) = new Complex(Dim2(d, 0))
   def apply(x: Double, y: Double) = new Complex(Dim2(x, y))
   def apply(dim2: Dim2) = new Complex(dim2)
@@ -10,8 +10,7 @@ object Complex extends Dim2WrapperComp {
 }
 
 class Complex protected(override protected val wrapped: Dim2) extends Dim2Wrapper(wrapped) with Dim2 {
-  def comp = Complex
-  override def mapD2(f: Double => Double) = comp(super[Dim2].mapD2(f))
+  override def mapD2(f: Double => Double) = Complex(super[Dim2].mapD2(f))
 
   def unary_+(): Complex = this
   def unary_-(): Complex = mapD2(-_)
