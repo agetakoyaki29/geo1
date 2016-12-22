@@ -11,11 +11,12 @@ class Dir2Test {
   val dir2 = Dir2(7, -3)
   val pt1 = Point2(-5, 1)
   
-  @Test def test1 = normalizedNormIs1(dir1)
-  @Test def test2 = nearestIsOn(dir1, pt1)
+  @Test def test1 = nearestIsOn(dir1, pt1)
+  @Test def test2 = normalizedNormIs1(dir1)
   @Test def test3 = normalIsNormal(dir1)
-  @Test def test4 = normalIsPlus90Degree(dir1)
-  @Test def test5 = testSinCosAngle(dir1, dir2)
+  @Test def test4 = {normalIsPlus90Degree(dir1); normalIsPlus90Degree(Dir2(pt1))}
+  @Test def test5 = testCosAngle(dir1, dir2)
+  @Test def test6 = testSinAngle(dir1, dir2)
 
   def nearestIsOn(dir: Dir2, pt: Point2) = {
     val near = dir.nearest(pt)
@@ -27,9 +28,7 @@ class Dir2Test {
   
   def normalizedNormIs1(dir: Dir2) = {
     val norm = dir.normalize.norm
-    val t1 = Delta.eq(norm, 1)
-    assertTrue("normalized norm is 1", t1)
-//    assertEquals(1, norm, Delta.delta)
+    assertEquals(1, norm, Delta.delta)
   }
   
   def normalIsNormal(dir: Dir2) = {
@@ -40,15 +39,23 @@ class Dir2Test {
   
   def normalIsPlus90Degree(dir: Dir2) = {
     val normal = dir.normal
-    val theta = dir.angleTo(normal)
-    val zero = theta % (2*Math.PI) - (Math.PI/2)
-    val t1 = Delta.eq0(zero)
-    assertTrue("dir to normal is 90 degree", t1)
+    val angle = dir.angleTo(normal)
+    val normalized = mod(angle, 2*Math.PI)
+    assertEquals(Math.PI/2, normalized, Delta.delta)
   }
   
-  def testSinCosAngle(dir1: Dir2, dir2: Dir2) = {
+  def mod(d1: Double, d2: Double) = (d1 % d2 + d2) % d2
+  
+  def testCosAngle(dir1: Dir2, dir2: Dir2) = {
     val deg = dir1 angleTo dir2
-    fail
+    val cos = dir1 cosTo dir2
+    assertEquals(cos, Math.cos(deg), Delta.delta)
+  }
+  
+  def testSinAngle(dir1: Dir2, dir2: Dir2) = {
+    val deg = dir1 angleTo dir2
+    val sin = dir1 sinTo dir2
+    assertEquals(sin, Math.sin(deg), Delta.delta)
   }
   
 }
