@@ -40,11 +40,34 @@ class Dir2 protected(override protected val wrapped: Dim2) extends Point2(wrappe
    */
   def angle: Double = if(isZero) Double.NaN else Math.atan2(y, x)
   
-/**
- * get angle between two dir
- * @param op
- * @return angle, if zero then NaN
- */
-def angleTo(op: Dir2): Double = op.angle - this.angle
+  /**
+   * get angle between two dir
+   * @param op
+   * @return angle, if zero then NaN
+   */
+  def angleTo(op: Dir2): Double = op.angle - this.angle
   
 }
+
+
+
+object Dir2Chomp extends Dim2Factory[Dir2Chomp] {
+  def apply(d: Double) = new Dir2Chomp(Dim2(d, d))
+  def apply(x: Double, y: Double) = new Dir2Chomp(Dim2(x, y))
+  def apply(dim2: Dim2) = new Dir2Chomp(dim2)
+}
+
+class Dir2Chomp protected(override protected val wrapped: Dim2) extends Dir2(wrapped) {
+
+  override def factory: Dim2Factory[_ <: Dir2Chomp] = Dir2Chomp
+  
+  override def dist(op: Point2): Double = ???
+  override def sqrDist(op: Point2): Double = ???
+  
+  override def nearest(pt: Point2): Point2 = ???
+  
+  override def isOn(pt: Point2): Boolean = ???
+  override def isOnWithDelta(pt: Point2): Boolean = ???
+  
+}
+
