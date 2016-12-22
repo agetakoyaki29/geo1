@@ -47,6 +47,18 @@ class Dir2 protected(override protected val wrapped: Dim2) extends Point2(wrappe
    */
   def angleTo(op: Dir2): Double = op.angle - this.angle
   
+  def cosTo(op: Dir2): Double = {
+    if(this.isZero) Double.NaN
+    else if(op.isZero) Double.NaN
+    else this dot op / this.norm / op.norm
+  }
+  
+  def sinTo(op: Dir2): Double = {
+    if(this.isZero) Double.NaN
+    else if(op.isZero) Double.NaN
+    else this cross op / this.norm / op.norm
+  }
+  
 }
 
 

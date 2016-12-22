@@ -31,4 +31,5 @@ class Vector2 protected(override protected val wrapped: Dim2) extends Dim2Wrappe
   
   def norm: Double = Math.sqrt(normSqr)
   def normSqr: Double = x*x + y*y
+  
 }
