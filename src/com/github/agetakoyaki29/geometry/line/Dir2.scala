@@ -36,13 +36,15 @@ class Dir2 protected(override protected val wrapped: Dim2) extends Point2(wrappe
   /**
    * get angle
    * -pi ~ pi
-   * @return angle
+   * @return angle, if zero then NaN
    */
-  def angle: Double = {
-    if(isZero) throw new RuntimeException("zero point doesn't have angle")
-    Math.atan2(y, x)
-  }
+  def angle: Double = if(isZero) Double.NaN else Math.atan2(y, x)
   
-  def angleTo(op: Dir2): Double = op.angle - this.angle
+/**
+ * get angle between two dir
+ * @param op
+ * @return angle, if zero then NaN
+ */
+def angleTo(op: Dir2): Double = op.angle - this.angle
   
 }

@@ -57,5 +57,17 @@ trait Dim2 extends IndexedSeq[Double] {
 
 
 final class SimpleD2(override val x: Double, override val y: Double) extends Dim2 {
+  validateDouble(x)
+  validateDouble(y)
+  
+  def validateDouble(d: Double): Unit = d match {
+    case Double.NaN =>
+      new IllegalArgumentException("Not NaN")
+    case Double.PositiveInfinity | Double.NegativeInfinity => 
+      new IllegalArgumentException("Not Infinity")
+    case Double.MinValue =>
+      new IllegalArgumentException("Not MinValue")
+    case _ =>
+  }
 }
 
