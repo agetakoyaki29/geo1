@@ -24,10 +24,10 @@ class Complex protected(override protected val wrapped: Dim2) extends Dim2Wrappe
   def *(op: Complex): Complex = factory(x*op.x - y*op.y, x*op.y + y*op.x)
   
   def /(d: Double): Complex = factory(x/d, y/d)
-  def /(op: Complex): Complex = (this * ~op) / op.sqrNorm
+  def /(op: Complex): Complex = (this * ~op) / op.normSqr
   
-  def norm: Double = Math.sqrt(sqrNorm)
-  def sqrNorm: Double = x*x + y*y
+  def norm: Double = Math.sqrt(normSqr)
+  def normSqr: Double = x*x + y*y
   
 //  override def toString(): String = this.getClass.getSimpleName + s"(${x}, ${y}i)"
 }

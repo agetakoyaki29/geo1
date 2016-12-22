@@ -29,6 +29,6 @@ class Vector2 protected(override protected val wrapped: Dim2) extends Dim2Wrappe
 
   def cross(op: Vector2) = x*op.y - y*op.x
   
-  def norm: Double = Math.sqrt(sqrNorm)
-  def sqrNorm: Double = x*x + y*y
+  def norm: Double = Math.sqrt(normSqr)
+  def normSqr: Double = x*x + y*y
 }

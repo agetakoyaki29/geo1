@@ -15,8 +15,8 @@ class Dir2 protected(override protected val wrapped: Dim2) extends Point2(wrappe
 
   override def factory: Dim2Factory[_ <: Dir2] = Dir2
   
-  override def dist(op: Point2): Double = ???
-  override def sqrDist(op: Point2): Double = ???
+  override def dist(op: Point2): Double = Math.sqrt(distSqr(op))
+  override def distSqr(op: Point2): Double = ???
   
   def nearest(pt: Point2): Point2 = ???
   
@@ -61,8 +61,8 @@ class Dir2Chomp protected(override protected val wrapped: Dim2) extends Dir2(wra
 
   override def factory: Dim2Factory[_ <: Dir2Chomp] = Dir2Chomp
   
-  override def dist(op: Point2): Double = ???
-  override def sqrDist(op: Point2): Double = ???
+  override def dist(op: Point2): Double = Math.sqrt(distSqr(op))
+  override def distSqr(op: Point2): Double = ???
   
   override def nearest(pt: Point2): Point2 = ???
   
