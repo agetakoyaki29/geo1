@@ -15,7 +15,7 @@ class Point2 protected(override protected val wrapped: Dim2) extends Vector2(wra
   
   override def factory: Dim2Factory[_ <: Point2] = Point2
   
-  def dist(op: Point2) = Math.sqrt(distSqr(op))
-  def distSqr(op: Point2) = (this-op).normSqr
+  def distance(op: Point2) = Math.sqrt(distanceSqr(op))
+  def distanceSqr(op: Point2) = (this-op).normSqr
   
 }

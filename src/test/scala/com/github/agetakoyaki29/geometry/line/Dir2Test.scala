@@ -9,7 +9,10 @@ class Dir2Test extends FunSuite {
   val dir1 = Dir2(3, 4)
   val dir2 = Dir2(7, -3)
   val pt1 = Point2(-5, 1)
-
+  
+  test("distance sqr = distanceSqr") {
+    
+  }
   test("nearestIsOn") {
     nearestIsOn(dir1, pt1)
   }
@@ -30,6 +33,12 @@ class Dir2Test extends FunSuite {
     testSinAngle(dir1, dir2)
   }
 
+  def distdist(dir: Dir2, pt: Point2) = {
+    val distance = dir.distance(pt)
+    val distanceSqr = dir.distanceSqr(pt)
+    val t1 = Delta.eq(distance, distanceSqr)
+    assert(t1)
+  }
   def nearestIsOn(dir: Dir2, pt: Point2) = {
     val near = dir.nearest(pt)
     val t1 = dir.isOnWithDelta(near)

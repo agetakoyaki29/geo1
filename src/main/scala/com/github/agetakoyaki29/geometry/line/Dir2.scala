@@ -15,19 +15,23 @@ class Dir2 protected(override protected val wrapped: Dim2) extends Point2(wrappe
 
   override def factory: Dim2Factory[_ <: Dir2] = Dir2
   
-  override def dist(op: Point2): Double = Math.sqrt(distSqr(op))
-  override def distSqr(op: Point2): Double = ???
+  /**
+   * distance
+   * this sinTo pt * pt.norm
+   */
+  override def distance(pt: Point2): Double = this cross pt / this.norm
+  override def distanceSqr(pt: Point2): Double = Math.pow(this cross pt, 2) / this.normSqr
   
   /**
    * nearest point
-   * pt + (this sinTo pt * pt.norm) * this.normal.normalize
+   * pt + distance * this.normal.normalize
    * @param pt
    * @return
    */
-  def nearest(pt: Point2): Point2 = ???
+  def nearest(pt: Point2): Point2 = (pt + this.normal.normalize * -(this distance pt)).asInstanceOf[Point2]  // FIXME
   
-  def isOn(pt: Point2): Boolean = ???
-  def isOnWithDelta(pt: Point2): Boolean = ???
+  def isOn(pt: Point2): Boolean = this isParallel Dir2(pt)    // FIXME
+  def isOnWithDelta(pt: Point2): Boolean = this isParallelWithDelta Dir2(pt)
   
   def normalize: Dir2 = (this/norm).asInstanceOf[Dir2]
   
@@ -79,8 +83,8 @@ class Dir2Chomp protected(override protected val wrapped: Dim2) extends Dir2(wra
 
   override def factory: Dim2Factory[_ <: Dir2Chomp] = Dir2Chomp
   
-  override def dist(op: Point2): Double = Math.sqrt(distSqr(op))
-  override def distSqr(op: Point2): Double = ???
+  override def distance(op: Point2): Double = ???
+  override def distanceSqr(op: Point2): Double = ???
   
   override def nearest(pt: Point2): Point2 = ???
   
