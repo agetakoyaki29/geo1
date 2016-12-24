@@ -8,3 +8,7 @@ delta usecase
 
 * rename WithDelta func
 instead of Strict or Ideal
+
+* Double epsilon
+
+* Shape trait Shape.same, Shape.aabb
