@@ -1,7 +1,7 @@
 package com.github.agetakoyaki29.geometry.line
 
 
-class Line2(val pt: Point2, val dir: Dir2) {
+class Line2(val sp: Point2, val dir: Dir2) {
   
 //  override def factory: Line2Factory[_ <: Line2] = ???
   

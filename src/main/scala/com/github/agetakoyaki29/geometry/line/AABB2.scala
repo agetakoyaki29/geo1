@@ -9,10 +9,10 @@ object AABB2 {
   }
 }
 
-case class AABB2(val pt: Point2, val size: Size2) {
+case class AABB2(val sp: Point2, val size: Size2) {
   
-  def contain(op: Point2) = size.contain((op-pt).asInstanceOf[Point2])
+  def contain(pt: Point2) = size.contain((pt-sp).asInstanceOf[Point2])
   
-  def containWithDelta(op: Point2) = size.containWithDelta((op-pt).asInstanceOf[Point2])
+  def containWithDelta(pt: Point2) = size.containWithDelta((pt-sp).asInstanceOf[Point2])
   
 }
