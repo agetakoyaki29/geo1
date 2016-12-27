@@ -31,6 +31,8 @@ class Dir2 protected(override protected val wrapped: Dim2) extends Point2(wrappe
   }
   
   override def isZero = false
+
+  //
   
   /**
    * distance, non abs
@@ -50,6 +52,18 @@ class Dir2 protected(override protected val wrapped: Dim2) extends Point2(wrappe
   
   def isOn(pt: Point2): Boolean = this isParallel Dir2(pt)
   def isOnWithDelta(pt: Point2): Boolean = this isParallelWithDelta Dir2(pt)
+  
+  //
+  
+  def same(op: Dir2): Boolean = this isParallelWithDelta op
+  
+  def aabb: AABB2 = ???
+  
+  def intersect(line: Line2): Seq[Point2] = ???
+  
+  def isIntersect(line: Line2): Boolean = ???
+  
+  //
   
   def normalize: Dir2 = (this/norm).asInstanceOf[Dir2]
   
@@ -100,6 +114,16 @@ class Dir2Chomp protected(override protected val wrapped: Dim2) extends Dir2(wra
   
   override def isOn(pt: Point2): Boolean = ???
   override def isOnWithDelta(pt: Point2): Boolean = ???
+  
+  //
+  
+  override def same(op: Dir2): Boolean = this.equals(op)
+  
+  override def aabb: AABB2 = ???
+  
+  override def intersect(line: Line2): Seq[Point2] = ???
+  
+  override def isIntersect(line: Line2): Boolean = ???
   
 }
 

@@ -15,8 +15,6 @@ class Line2(val pt: Point2, val dir: Dir2) {
 //  def isParallel(op: Dir2): Boolean = cross(op) == 0
 //  def isParallelWithDelta(op: Dir2): Boolean = Delta.eq0(cross(op))
   
-  def same(op: Any) = ???
-  
   def distance(op: Point2): Double = ???
   def distanceSqr(op: Point2): Double = ???
   
@@ -25,8 +23,12 @@ class Line2(val pt: Point2, val dir: Dir2) {
   def isOn(pt: Point2): Boolean = ???
   def isOnWithDelta(pt: Point2): Boolean = ???
   
-  def isEx(op: Line2) = ???
+  def same(op: Any) = ???
   
-  def exPt(op: Line2): Seq[Point2] = ???
+  def aabb: AABB2 = ???
+  
+  def isIntersect(op: Line2): Boolean = ???
+  
+  def intersect(op: Line2): Seq[Point2] = ???
   
 }
