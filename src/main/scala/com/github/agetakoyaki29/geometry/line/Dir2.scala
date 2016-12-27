@@ -41,11 +41,12 @@ class Dir2 protected(override protected val wrapped: Dim2) extends Point2(wrappe
   
   /**
    * nearest point
-   * pt + distance * this.normal.normalize
+   * this.normalize * this cosTo pt
+   * pt + this.normal.normalize * -distance
    * @param pt
    * @return
    */
-  def nearest(pt: Point2): Point2 = (pt + this.normal.normalize * -(this distance pt)).asInstanceOf[Point2]  // FIXME
+  def nearest(pt: Point2): Point2 = (this * ((this dot pt) / this.normSqr / pt.norm)).asInstanceOf[Point2]  // FIXME
   
   def isOn(pt: Point2): Boolean = this isParallel Dir2(pt)
   def isOnWithDelta(pt: Point2): Boolean = this isParallelWithDelta Dir2(pt)
