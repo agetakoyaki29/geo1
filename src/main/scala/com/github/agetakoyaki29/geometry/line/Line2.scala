@@ -15,8 +15,8 @@ class Line2(val sp: Point2, val dir: Dir2) {
 //  def isParallel(op: Dir2): Boolean = cross(op) == 0
 //  def isParallelWithDelta(op: Dir2): Boolean = Delta.eq0(cross(op))
   
-  def distance(op: Point2): Double = ???
-  def distanceSqr(op: Point2): Double = ???
+  def distance(pt: Point2): Double = dir distance (pt-sp).asInstanceOf[Point2]
+  def distanceSqr(pt: Point2): Double = dir distanceSqr (pt-sp).asInstanceOf[Point2]
   
   def nearest(pt: Point2): Point2 = ???
   

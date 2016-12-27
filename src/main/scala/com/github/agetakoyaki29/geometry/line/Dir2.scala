@@ -66,6 +66,9 @@ class Dir2 protected(override protected val wrapped: Dim2) extends Point2(wrappe
   
   //
   
+  def inRegion1(pt: Point2) = Delta.gt(this dot pt, 0)
+  def inRegion2(pt: Point2) = Delta.gt(-this dot pt-this, 0)
+  
   def normalize: Dir2 = (this/norm).asInstanceOf[Dir2]
   
   def normal: Dir2 = factory(-y, x)
@@ -108,8 +111,16 @@ class Dir2Chomp protected(override protected val wrapped: Dim2) extends Dir2(wra
 
   override def factory: Dim2Factory[_ <: Dir2Chomp] = Dir2Chomp
   
-  override def distance(op: Point2): Double = ???
-  override def distanceSqr(op: Point2): Double = ???
+  override def distance(op: Point2): Double = {
+    if(!this.inRegion1(op)) op.norm
+    else if(!this.inRegion2(op)) (op-this).norm
+    else super.distance(op)
+  }
+  override def distanceSqr(op: Point2): Double = {
+    if(!this.inRegion1(op)) op.normSqr
+    else if(!this.inRegion2(op)) (op-this).normSqr
+    else super.distanceSqr(op)
+  }
   
   override def nearest(pt: Point2): Point2 = ???
   

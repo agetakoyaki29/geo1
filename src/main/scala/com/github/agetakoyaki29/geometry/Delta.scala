@@ -14,4 +14,9 @@ object Delta {
   def ge0(d: Double, delta: Double): Boolean = d >= -delta
   def gt(d1: Double, d2: Double): Boolean = gt0(d1-d2, deltaMin(d1, d2))
   def ge(d1: Double, d2: Double): Boolean = ge0(d1-d2, deltaMin(d1, d2))
+  
+  def lt0(d: Double, delta: Double): Boolean = d < -delta
+  def le0(d: Double, delta: Double): Boolean = d <= -delta
+  def lt(d1: Double, d2: Double): Boolean = lt0(d1-d2, deltaMin(d1, d2))
+  def le(d1: Double, d2: Double): Boolean = le0(d1-d2, deltaMin(d1, d2))
 }
