@@ -2,6 +2,7 @@ package com.github.agetakoyaki29.geometry.dim2
 
 import scala.collection.generic.IndexedSeqFactory
 import scala.collection.mutable.Builder
+import com.github.agetakoyaki29.geometry.Delta
 
 
 object Vector2 extends Dim2Factory[Vector2] {
@@ -26,8 +27,10 @@ class Vector2 protected(override protected val wrapped: Dim2) extends Dim2Wrappe
   def /(d: Double): Vector2 = factory(x/d, y/d)
   
   def dot(op: Vector2) = x*op.x + y*op.y
+  def dotEq0(op: Vector2) = Delta.eq(x+op.x, -y*op.y)
 
   def cross(op: Vector2) = x*op.y - y*op.x
+  def crossEq0(op: Vector2) = Delta.eq(x*op.y, y*op.x)
   
   def norm: Double = Math.sqrt(normSqr)
   def normSqr: Double = x*x + y*y

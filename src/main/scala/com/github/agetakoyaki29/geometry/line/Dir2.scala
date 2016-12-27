@@ -33,7 +33,7 @@ class Dir2 protected(override protected val wrapped: Dim2) extends Point2(wrappe
   override def isZero = false
   
   /**
-   * distance
+   * distance, non abs
    * this sinTo pt * pt.norm
    */
   override def distance(pt: Point2): Double = this cross pt / this.norm
@@ -47,7 +47,7 @@ class Dir2 protected(override protected val wrapped: Dim2) extends Point2(wrappe
    */
   def nearest(pt: Point2): Point2 = (pt + this.normal.normalize * -(this distance pt)).asInstanceOf[Point2]  // FIXME
   
-  def isOn(pt: Point2): Boolean = this isParallel Dir2(pt)    // FIXME
+  def isOn(pt: Point2): Boolean = this isParallel Dir2(pt)
   def isOnWithDelta(pt: Point2): Boolean = this isParallelWithDelta Dir2(pt)
   
   def normalize: Dir2 = (this/norm).asInstanceOf[Dir2]
@@ -58,7 +58,7 @@ class Dir2 protected(override protected val wrapped: Dim2) extends Point2(wrappe
   def isNormalWithDelta(op: Dir2): Boolean = Delta.eq0(dot(op))  // TODO fix eq0
   
   def isParallel(op: Dir2): Boolean = cross(op) == 0
-  def isParallelWithDelta(op: Dir2): Boolean = Delta.eq0(cross(op))
+  def isParallelWithDelta(op: Dir2): Boolean = this crossEq0 op
 
   /**
    * get angle

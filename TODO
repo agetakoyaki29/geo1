@@ -12,5 +12,3 @@ instead of Strict or Ideal
 * Double epsilon
 
 * Shape trait Shape.same, Shape.aabb
-
-* dotEq0, crossEq0
