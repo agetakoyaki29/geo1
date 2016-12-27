@@ -9,11 +9,11 @@ object Size2 extends Dim2Factory[Size2] {
   def apply(x: Double, y: Double) = new Size2(Dim2(x, y))
   def apply(dim2: Dim2) = new Size2(dim2)
   
-  val ZERO: Size2 = new Size2(Dim2.ZERO) { override def validate = {} }
-  val INFINITY: Size2 = new Size2(Dim2.INFINITY) { override def validate = {} }
+  val ZERO: Size2 = new Size2(Dim2.ZERO)
+  val INFINITY: Size2 = new Size2(Dim2.INFINITY)
 }
 
-class Size2 protected(override protected val wrapped: Dim2) extends Dir2(wrapped) {
+class Size2 protected(override protected val wrapped: Dim2) extends Point2(wrapped) {
 
   override def factory: Dim2Factory[_ <: Size2] = Size2
   
