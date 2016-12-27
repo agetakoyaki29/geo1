@@ -47,8 +47,6 @@ trait Dim2 extends IndexedSeq[Double] {
   def factory: Dim2Factory[_ <: Dim2] = Dim2
 
   def isZero: Boolean = x==0 && y==0
-  def isZeroWithDelta: Boolean = Delta.eq0(x) && Delta.eq0(y)    // TODO re
-
   def isInfinite = x.isInfinite || y.isInfinite
 
   def mapD2(f: Double => Double): Dim2 = factory(f(x), f(y))
