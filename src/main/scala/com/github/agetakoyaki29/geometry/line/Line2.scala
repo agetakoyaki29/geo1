@@ -9,6 +9,7 @@ case class Line2(val sp: Point2, val dir: Dir2) {
   }
 
   def localize(pt: Point2) = (pt-sp).asInstanceOf[Point2]  // TODO macro
+  def localize(line: Line2) = line-sp
 
 	//
 
@@ -30,13 +31,13 @@ case class Line2(val sp: Point2, val dir: Dir2) {
 
   //
 
-  def same(op: Line2) = ???
+  def sameWithDelta(op: Line2) = dir sameWithDelta localize(op)
 
   def aabb: AABB2 = dir.aabb + sp
 
-  def isIntersect(op: Line2): Boolean = ???
+  def isIntersect(op: Line2): Boolean = dir isIntersect localize(op)
 
-  def intersect(op: Line2): Seq[Point2] = ???
+  def intersect(op: Line2): Seq[Point2] = dir intersect localize(op)
 
   //
 

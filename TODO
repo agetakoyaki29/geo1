@@ -33,6 +33,14 @@ NonZero orElse NonInf andThen super.*
 * Transform.update func
 obj(pos) = np
 
+* what happen call intersect when each is same
+
+* check isChomp
+
+* super case
+def scase[A](any: A) = any.asInstanceOf[A]
+obj.super[A]
+
 
 ---
 

@@ -68,7 +68,9 @@ class Dir2 protected(override protected val wrapped: Dim2) extends Point2(wrappe
 
   //
 
-  def same(op: Dir2): Boolean = this isParallelWithDelta op
+  def sameWithDelta(op: Dir2): Boolean = this isParallelWithDelta op
+
+  def sameWithDelta(line: Line2): Boolean = (this isOnWithDelta line.sp) && (this isParallelWithDelta line.dir)
 
   def aabb: AABB2 = AABB2.WHOLE
 
@@ -147,7 +149,12 @@ class Dir2Chomp protected(override protected val wrapped: Dim2) extends Dir2(wra
 
   //
 
-  override def same(op: Dir2): Boolean = this.equals(op)
+  override def sameWithDelta(op: Dir2): Boolean = asInstanceOf[Point2].sameWithDelta(op)			// TODO check isChomp
+
+  override def sameWithDelta(line: Line2): Boolean = {
+    (line.sp sameWithDelta Point2(Dim2.ZERO)) && (line.dir sameWithDelta this) ||
+    (line.sp sameWithDelta this) && ((-line.dir).asInstanceOf[Point2] sameWithDelta this)		// FIXME
+	}
 
   override def aabb: AABB2 = {
     val min = this.mapD2(Math.min(0, _)).asInstanceOf[Point2]
