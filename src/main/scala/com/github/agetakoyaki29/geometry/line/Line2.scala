@@ -8,17 +8,17 @@ class Line2(val sp: Point2, val dir: Dir2) {
     case ex: Dir2 => false
   }
   
-  def makeLocal(pt: Point2) = (pt-sp).asInstanceOf[Point2]  // TODO macro
+  def localize(pt: Point2) = (pt-sp).asInstanceOf[Point2]  // TODO macro
   
   //
   
-  def distance(pt: Point2): Double = dir distance makeLocal(pt)
-  def distanceSqr(pt: Point2): Double = dir distanceSqr makeLocal(pt)
+  def distance(pt: Point2): Double = dir distance localize(pt)
+  def distanceSqr(pt: Point2): Double = dir distanceSqr localize(pt)
   
-  def nearest(pt: Point2): Point2 = dir nearest makeLocal(pt)
+  def nearest(pt: Point2): Point2 = dir nearest localize(pt)
   
-  def isOn(pt: Point2): Boolean = dir isOn makeLocal(pt)
-  def isOnWithDelta(pt: Point2): Boolean = dir isOnWithDelta makeLocal(pt)
+  def isOn(pt: Point2): Boolean = dir isOn localize(pt)
+  def isOnWithDelta(pt: Point2): Boolean = dir isOnWithDelta localize(pt)
   
   //
   
@@ -32,8 +32,8 @@ class Line2(val sp: Point2, val dir: Dir2) {
   
   //
   
-  def inRegion1(pt: Point2) = dir inRegion1 makeLocal(pt)
-  def inRegion2(pt: Point2) = dir inRegion2 makeLocal(pt)
+  def inRegion1(pt: Point2) = dir inRegion1 localize(pt)
+  def inRegion2(pt: Point2) = dir inRegion2 localize(pt)
   
   def normalize: Line2 = new Line2(sp, dir.normalize)
   

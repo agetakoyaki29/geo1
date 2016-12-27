@@ -113,18 +113,22 @@ class Dir2Chomp protected(override protected val wrapped: Dim2) extends Dir2(wra
   
   //
   
-  override def distance(op: Point2): Double = {
-    if(!this.inRegion1(op)) op.norm
-    else if(!this.inRegion2(op)) (op-this).norm
-    else super.distance(op)
+  override def distance(pt: Point2): Double = {
+    if(!this.inRegion1(pt)) pt.norm
+    else if(!this.inRegion2(pt)) (pt-this).norm
+    else super.distance(pt)
   }
-  override def distanceSqr(op: Point2): Double = {
-    if(!this.inRegion1(op)) op.normSqr
-    else if(!this.inRegion2(op)) (op-this).normSqr
-    else super.distanceSqr(op)
+  override def distanceSqr(pt: Point2): Double = {
+    if(!this.inRegion1(pt)) pt.normSqr
+    else if(!this.inRegion2(pt)) (pt-this).normSqr
+    else super.distanceSqr(pt)
   }
   
-  override def nearest(pt: Point2): Point2 = ???
+  override def nearest(pt: Point2): Point2 = {
+    if(!this.inRegion1(pt)) Dir2(Dim2.ZERO)
+    else if(!this.inRegion2(pt)) this
+    else super.nearest(pt)
+  }
   
   override def isOn(pt: Point2): Boolean = super.isOn(pt) && aabb.contain(pt)
   override def isOnWithDelta(pt: Point2): Boolean = super.isOnWithDelta(pt) && aabb.containWithDelta(pt)
