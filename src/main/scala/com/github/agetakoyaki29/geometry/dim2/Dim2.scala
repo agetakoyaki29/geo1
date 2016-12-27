@@ -18,16 +18,16 @@ object Dim2 extends Dim2Factory[Dim2] {
 trait Dim2 extends IndexedSeq[Double] {
   def x: Double
   def y: Double
-  
+
   // -- validate --
-  
+
   validate
-  
+
   protected def validate = {
     validateElement(x)
     validateElement(y)
   }
-  
+
   protected def validateElement(d: Double): Unit = d match {
     case Double.NaN =>
       new IllegalArgumentException("Not NaN")
@@ -48,6 +48,8 @@ trait Dim2 extends IndexedSeq[Double] {
 
   def isZero: Boolean = x==0 && y==0
   def isZeroWithDelta: Boolean = Delta.eq0(x) && Delta.eq0(y)    // TODO re
+
+  def isInfinite = x.isInfinite || y.isInfinite
 
   def mapD2(f: Double => Double): Dim2 = factory(f(x), f(y))
 
