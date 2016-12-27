@@ -3,6 +3,7 @@ package com.github.agetakoyaki29.geometry.line
 import com.github.agetakoyaki29.geometry.dim2.Dim2
 import com.github.agetakoyaki29.geometry.dim2.Dim2Factory
 import com.github.agetakoyaki29.geometry.Delta
+import org.scalactic.TypeCheckedTripleEquals._
 
 
 object Dir2 extends Dim2Factory[Dir2] {
@@ -11,9 +12,25 @@ object Dir2 extends Dim2Factory[Dir2] {
   def apply(dim2: Dim2) = new Dir2(dim2)
 }
 
+/**
+ * not Zero, not Infinity
+ */
 class Dir2 protected(override protected val wrapped: Dim2) extends Point2(wrapped) {
 
   override def factory: Dim2Factory[_ <: Dir2] = Dir2
+  
+  override def validate = {
+    super.validate
+    if(x == 0 && y == 0) throw new IllegalArgumentException("Not Zero")
+  }
+  
+  override def validateElement(d: Double) = d match {
+    case Double.PositiveInfinity | Double.NegativeInfinity => 
+      new IllegalArgumentException("Not Infinity")
+    case d => super.validateElement(d)
+  }
+  
+  override def isZero = false
   
   /**
    * distance
@@ -46,28 +63,20 @@ class Dir2 protected(override protected val wrapped: Dim2) extends Point2(wrappe
   /**
    * get angle
    * -pi ~ pi
-   * @return angle, if zero then NaN
+   * @return angle
    */
-  def angle: Double = if(isZero) Double.NaN else Math.atan2(y, x)
+  def angle: Double = Math.atan2(y, x)
   
   /**
    * get angle between two dir
    * @param op
-   * @return angle, if zero then NaN
+   * @return angle
    */
   def angleTo(op: Dir2): Double = op.angle - this.angle
   
-  def cosTo(op: Dir2): Double = {
-    if(this.isZero) Double.NaN
-    else if(op.isZero) Double.NaN
-    else this dot op / this.norm / op.norm
-  }
+  def cosTo(op: Dir2): Double = this dot op / this.norm / op.norm
   
-  def sinTo(op: Dir2): Double = {
-    if(this.isZero) Double.NaN
-    else if(op.isZero) Double.NaN
-    else this cross op / this.norm / op.norm
-  }
+  def sinTo(op: Dir2): Double = this cross op / this.norm / op.norm
   
 }
 

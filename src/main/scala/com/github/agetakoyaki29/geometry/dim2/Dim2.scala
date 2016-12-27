@@ -18,21 +18,22 @@ trait Dim2 extends IndexedSeq[Double] {
   def x: Double
   def y: Double
   
-  // -- validation --
+  // -- validate --
   
-  validateDouble(x)
-  validateDouble(y)
+  validate
   
-  def validateDouble(d: Double): Unit = d match {
+  protected def validate = {
+    validateElement(x)
+    validateElement(y)
+  }
+  
+  protected def validateElement(d: Double): Unit = d match {
     case Double.NaN =>
       new IllegalArgumentException("Not NaN")
-    case Double.PositiveInfinity | Double.NegativeInfinity => 
-      new IllegalArgumentException("Not Infinity")
     case Double.MinValue =>
       new IllegalArgumentException("Not MinValue")
     case _ =>
   }
-
 
   // -- IndexedSeq --
 
