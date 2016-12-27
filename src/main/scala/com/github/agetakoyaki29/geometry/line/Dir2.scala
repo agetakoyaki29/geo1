@@ -111,6 +111,8 @@ class Dir2Chomp protected(override protected val wrapped: Dim2) extends Dir2(wra
 
   override def factory: Dim2Factory[_ <: Dir2Chomp] = Dir2Chomp
   
+  //
+  
   override def distance(op: Point2): Double = {
     if(!this.inRegion1(op)) op.norm
     else if(!this.inRegion2(op)) (op-this).norm

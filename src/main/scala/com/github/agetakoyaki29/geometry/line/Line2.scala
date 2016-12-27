@@ -3,34 +3,54 @@ package com.github.agetakoyaki29.geometry.line
 
 class Line2(val sp: Point2, val dir: Dir2) {
   
-//  override def factory: Line2Factory[_ <: Line2] = ???
+  def isChomp: Boolean = dir match {
+    case chomp: Dir2Chomp => true
+    case ex: Dir2 => false
+  }
   
-//  def normalize: Dir2 = (this/norm).asInstanceOf[Dir2]
-//  
-//  def normal: Dir2 = factory(-y, x)
-//  
-//  def isNormal(op: Dir2): Boolean = dot(op) == 0
-//  def isNormalWithDelta(op: Dir2): Boolean = Delta.eq0(dot(op))  // TODO fix eq0
-//  
-//  def isParallel(op: Dir2): Boolean = cross(op) == 0
-//  def isParallelWithDelta(op: Dir2): Boolean = Delta.eq0(cross(op))
-  
-  def distance(pt: Point2): Double = dir distance (pt-sp).asInstanceOf[Point2]
-  def distanceSqr(pt: Point2): Double = dir distanceSqr (pt-sp).asInstanceOf[Point2]
-  
-  def nearest(pt: Point2): Point2 = ???
-  
-  def isOn(pt: Point2): Boolean = dir isOn (pt-sp).asInstanceOf[Point2]
-  def isOnWithDelta(pt: Point2): Boolean = dir isOnWithDelta (pt-sp).asInstanceOf[Point2]
+  def makeLocal(pt: Point2) = (pt-sp).asInstanceOf[Point2]  // TODO macro
   
   //
   
-  def same(op: Any) = ???
+  def distance(pt: Point2): Double = dir distance makeLocal(pt)
+  def distanceSqr(pt: Point2): Double = dir distanceSqr makeLocal(pt)
+  
+  def nearest(pt: Point2): Point2 = dir nearest makeLocal(pt)
+  
+  def isOn(pt: Point2): Boolean = dir isOn makeLocal(pt)
+  def isOnWithDelta(pt: Point2): Boolean = dir isOnWithDelta makeLocal(pt)
+  
+  //
+  
+  def same(op: Line2) = ???
   
   def aabb: AABB2 = dir.aabb + sp
   
   def isIntersect(op: Line2): Boolean = ???
   
   def intersect(op: Line2): Seq[Point2] = ???
+  
+  //
+  
+  def inRegion1(pt: Point2) = dir inRegion1 makeLocal(pt)
+  def inRegion2(pt: Point2) = dir inRegion2 makeLocal(pt)
+  
+  def normalize: Line2 = new Line2(sp, dir.normalize)
+  
+  def normal: Line2 = new Line2(sp, dir.normal)
+  
+  def isNormal(op: Line2): Boolean = this.dir isNormal op.dir
+  def isNormalWithDelta(op: Line2): Boolean = this.dir isNormalWithDelta op.dir
+  
+  def isParallel(op: Line2): Boolean = this.dir isParallel op.dir
+  def isParallelWithDelta(op: Line2): Boolean = this.dir isParallelWithDelta op.dir
+  
+  def angle: Double = dir.angle
+  
+  def angleTo(op: Line2): Double = this.dir angleTo op.dir
+  
+  def cosTo(op: Line2): Double = this.dir cosTo op.dir
+  
+  def sinTo(op: Line2): Double = this.dir sinTo op.dir
   
 }
