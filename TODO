@@ -11,4 +11,15 @@ instead of Strict or Ideal
 
 * Double epsilon
 
+* is* naming
+dir isOn pt
+dir isIntersect line
+
+
+
+---
+
+* 誤差の取り扱い
+
 * asInstance is dynamic
+戻り値同型の法則をどうやって実装する？

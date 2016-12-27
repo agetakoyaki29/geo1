@@ -20,8 +20,10 @@ class Line2(val sp: Point2, val dir: Dir2) {
   
   def nearest(pt: Point2): Point2 = ???
   
-  def isOn(pt: Point2): Boolean = ???
-  def isOnWithDelta(pt: Point2): Boolean = ???
+  def isOn(pt: Point2): Boolean = dir isOn (pt-sp).asInstanceOf[Point2]
+  def isOnWithDelta(pt: Point2): Boolean = dir isOnWithDelta (pt-sp).asInstanceOf[Point2]
+  
+  //
   
   def same(op: Any) = ???
   
