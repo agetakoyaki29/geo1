@@ -9,6 +9,7 @@ object Dim2 extends Dim2Factory[Dim2] {
   def apply(op: Dim2): Dim2 = new SimpleD2(op.x, op.y)
 
   val ZERO = this(0, 0)
+  val INFINITY = this(Double.PositiveInfinity, Double.PositiveInfinity)
   val E1 = this(1, 0)
   val E2 = this(0, 1)
 }
