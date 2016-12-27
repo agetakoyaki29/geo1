@@ -15,6 +15,23 @@ instead of Strict or Ideal
 dir isOn pt
 dir isIntersect line
 
+* rename package
+line => line2
+ => fegure2
+
+* case Double.NaN -> d if d.isNaN
+
+* PartialFunction validation
+type =?>[A,B] = PartialFunction[A,B]
+val NonZero: Double =?> Any = { case d if d == 0 => throw new IllegalArgumentException("Not Zero") }
+NonZero orElse NonInf orElse { case d => super.*(d) }
+NonZero orElse NonInf andThen super.*
+パッケージオブジェクト
+
+* Transform.localize
+
+* Transform.update func
+obj(pos) = np
 
 
 ---

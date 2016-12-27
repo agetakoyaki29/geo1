@@ -26,13 +26,24 @@ class Dir2 protected(override protected val wrapped: Dim2) extends Point2(wrappe
   }
 
   override def validateElement(d: Double) = d match {
-    case Double.PositiveInfinity | Double.NegativeInfinity =>
-      new IllegalArgumentException("Not Infinity")
-    case d => super.validateElement(d)
+  case d if d.isInfinite => throw new IllegalArgumentException("Not Infinite")
+    case _ => super.validateElement(d)
   }
 
   // override def isZero = false
   // override def isInfinite = false
+
+  override def *(d: Double): Dir2 = d match {
+    case d if d == 0 => throw new IllegalArgumentException("Not Zero")
+    case d if d.isInfinite => throw new IllegalArgumentException("Not Infinite")
+    case _ => super.*(d).asInstanceOf[Dir2]
+  }
+
+  override def /(d: Double): Dir2 = d match {
+    case d if d == 0 => throw new IllegalArgumentException("Not Zero")
+    case d if d.isInfinite => throw new IllegalArgumentException("Not Infinite")
+    case _ => super./(d).asInstanceOf[Dir2]
+  }
 
   //
 
