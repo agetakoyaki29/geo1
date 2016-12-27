@@ -25,7 +25,7 @@ class Line2(val sp: Point2, val dir: Dir2) {
   
   def same(op: Any) = ???
   
-  def aabb: AABB2 = ???
+  def aabb: AABB2 = dir.aabb + sp
   
   def isIntersect(op: Line2): Boolean = ???
   

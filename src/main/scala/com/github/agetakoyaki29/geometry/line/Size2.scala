@@ -22,6 +22,11 @@ class Size2 protected(override protected val wrapped: Dim2) extends Point2(wrapp
     case d => super.validateElement(d)
   }
   
+//  def unary_-
+  
+//  def *
+//  def /
+  
   def contain(pt: Point2) = 0 <= pt.x && pt.x <= x &&
                             0 <= pt.y && pt.y <= y
   
