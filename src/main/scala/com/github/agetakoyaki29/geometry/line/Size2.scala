@@ -25,4 +25,7 @@ class Size2 protected(override protected val wrapped: Dim2) extends Dir2(wrapped
   def contain(pt: Point2) = 0 <= pt.x && pt.x <= x &&
                             0 <= pt.y && pt.y <= y
   
+  def containWithDelta(pt: Point2) = 0 <= pt.x && pt.x <= x &&    // FIXME delta
+                                     0 <= pt.y && pt.y <= y
+  
 }

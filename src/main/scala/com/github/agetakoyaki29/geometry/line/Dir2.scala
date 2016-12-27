@@ -4,6 +4,7 @@ import com.github.agetakoyaki29.geometry.dim2.Dim2
 import com.github.agetakoyaki29.geometry.dim2.Dim2Factory
 import com.github.agetakoyaki29.geometry.Delta
 import org.scalactic.TypeCheckedTripleEquals._
+import com.github.agetakoyaki29.geometry.dim2.Vector2
 
 
 object Dir2 extends Dim2Factory[Dir2] {
@@ -57,7 +58,7 @@ class Dir2 protected(override protected val wrapped: Dim2) extends Point2(wrappe
   
   def same(op: Dir2): Boolean = this isParallelWithDelta op
   
-  def aabb: AABB2 = ???
+  def aabb: AABB2 = AABB2.WHOLE
   
   def intersect(line: Line2): Seq[Point2] = ???
   
@@ -112,14 +113,18 @@ class Dir2Chomp protected(override protected val wrapped: Dim2) extends Dir2(wra
   
   override def nearest(pt: Point2): Point2 = ???
   
-  override def isOn(pt: Point2): Boolean = ???
-  override def isOnWithDelta(pt: Point2): Boolean = ???
+  override def isOn(pt: Point2): Boolean = super.isOn(pt) && aabb.contain(pt)
+  override def isOnWithDelta(pt: Point2): Boolean = super.isOnWithDelta(pt) && aabb.containWithDelta(pt)
   
   //
   
   override def same(op: Dir2): Boolean = this.equals(op)
   
-  override def aabb: AABB2 = ???
+  override def aabb: AABB2 = {
+    val min = this.mapD2(Math.min(0, _)).asInstanceOf[Point2]
+    val max = this.mapD2(Math.max(0, _)).asInstanceOf[Vector2]
+    new AABB2(min, Size2(max-min))
+  }
   
   override def intersect(line: Line2): Seq[Point2] = ???
   
