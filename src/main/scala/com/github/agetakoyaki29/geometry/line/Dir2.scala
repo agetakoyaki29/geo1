@@ -71,7 +71,7 @@ class Dir2 protected(override protected val wrapped: Dim2) extends Point2(wrappe
   def normal: Dir2 = factory(-y, x)
   
   def isNormal(op: Dir2): Boolean = dot(op) == 0
-  def isNormalWithDelta(op: Dir2): Boolean = Delta.eq0(dot(op))  // TODO fix eq0
+  def isNormalWithDelta(op: Dir2): Boolean = this dotEq0 op
   
   def isParallel(op: Dir2): Boolean = cross(op) == 0
   def isParallelWithDelta(op: Dir2): Boolean = this crossEq0 op
