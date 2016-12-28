@@ -74,9 +74,13 @@ class Dir2 protected(override protected val wrapped: Dim2) extends Point2(wrappe
 
   def aabb: AABB2 = AABB2.WHOLE
 
-  def intersect(line: Line2): Seq[Point2] = ???
+  def intersect(line: Line2): Seq[Point2] = {
+		if(this isParallelWithDelta line.dir) Nil		// TODO be strict?
+		val t = (line.sp cross line.dir) / (this cross line.dir)
+		Seq(this * t)
+	}
 
-  def isIntersect(line: Line2): Boolean = ???
+  def isIntersect(line: Line2): Boolean = !(this isParallelWithDelta line.dir)
 
   //
 
