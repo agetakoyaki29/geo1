@@ -6,6 +6,8 @@ import com.github.agetakoyaki29.geometry.dim2.Point
 
 case class Line(val sp: Point, val dir: Dir) {
   
+  def this(sp: Point, ep: Point) = this(sp, Dir(ep-sp))
+  
   def ep: Point = (sp + dir).asInstanceOf[Point]
 
   def isChomp: Boolean = dir match {
