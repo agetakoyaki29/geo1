@@ -4,9 +4,11 @@ import com.github.agetakoyaki29.geometry.dim2.figure.AABB
 import com.github.agetakoyaki29.geometry.dim2.Point
 
 
+object Line {
+  def apply(sp: Point, ep: Point): Line = this(sp, Dir(ep-sp))
+}
+
 case class Line(val sp: Point, val dir: Dir) {
-  
-  def this(sp: Point, ep: Point) = this(sp, Dir(ep-sp))
   
   def ep: Point = (sp + dir).asInstanceOf[Point]
 
