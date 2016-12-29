@@ -5,7 +5,10 @@ import com.github.agetakoyaki29.geometry.dim2.Point
 
 
 object Line {
-  def apply(sp: Point, ep: Point): Line = this(sp, Dir(ep-sp))
+  def apply(sp: Point, ep: Point): Line = {
+    if(ep sameWithDelta sp) throw new IllegalArgumentException("not same point")
+    this(sp, Dir(ep-sp))
+  }
 }
 
 case class Line(val sp: Point, val dir: Dir) {
