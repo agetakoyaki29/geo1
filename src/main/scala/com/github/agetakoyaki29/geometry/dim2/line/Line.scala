@@ -5,6 +5,8 @@ import com.github.agetakoyaki29.geometry.dim2.Point
 
 
 case class Line(val sp: Point, val dir: Dir) {
+  
+  def ep: Point = (sp + dir).asInstanceOf[Point]
 
   def isChomp: Boolean = dir match {
     case chomp: DirChomp => true
