@@ -20,6 +20,10 @@ case class Line(val sp: Point, val dir: Dir) {
   def localize(pt: Point) = (pt-sp).asInstanceOf[Point]  // TODO macro
   def localize(line: Line) = line-sp
 
+  def unlocalize(pt: Point) = (pt+sp).asInstanceOf[Point]  // TODO macro
+  def unlocalize(line: Line) = line+sp
+  def unlocalize(aabb: AABB) = aabb+sp
+
 	//
 
   def +(pt: Point): Line = Line((sp+pt).asInstanceOf[Point], dir)
@@ -33,7 +37,7 @@ case class Line(val sp: Point, val dir: Dir) {
   def distance(pt: Point): Double = dir distance localize(pt)
   def distanceSqr(pt: Point): Double = dir distanceSqr localize(pt)
 
-  def nearest(pt: Point): Point = dir nearest localize(pt)
+  def nearest(pt: Point): Point = unlocalize(dir nearest localize(pt))
 
   def isOn(pt: Point): Boolean = dir isOn localize(pt)
   def isOnWithDelta(pt: Point): Boolean = dir isOnWithDelta localize(pt)
@@ -42,11 +46,11 @@ case class Line(val sp: Point, val dir: Dir) {
 
   def sameWithDelta(op: Line) = dir sameWithDelta localize(op)
 
-  def aabb: AABB = dir.aabb + sp
+  def aabb: AABB = unlocalize(dir.aabb)
 
   def isIntersect(op: Line): Boolean = dir isIntersect localize(op)
 
-  def intersect(op: Line): Seq[Point] = dir intersect localize(op)
+  def intersect(op: Line): Seq[Point] = (dir intersect localize(op)).map(unlocalize(_))
 
   //
 

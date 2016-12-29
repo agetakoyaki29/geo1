@@ -81,6 +81,10 @@ class Dir protected(override protected val wrapped: Dim2) extends Point(wrapped)
 		if(this isParallelWithDelta line.dir) Nil		// TODO be strict?
 		else {
   		val t = (line.sp cross line.dir) / (this cross line.dir)
+  		println(this isParallelWithDelta line.dir)
+  		println(this crossEq0 line.dir)
+  		println(this cross line.dir)
+  		println(t)
   		Seq(this * t)
 		}
 	}
