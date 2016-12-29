@@ -3,6 +3,7 @@ package com.github.agetakoyaki29.geometry.dim2.line
 import org.scalatest.FunSuite
 
 import com.github.agetakoyaki29.geometry.Delta
+import com.github.agetakoyaki29.geometry.dim2.Point
 
 
 class Dir2Test extends FunSuite {

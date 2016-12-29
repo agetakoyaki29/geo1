@@ -8,10 +8,6 @@ instead of Strict or Ideal
 dir isOn pt
 dir isIntersect line
 
-* rename package
-line => line2
- => fegure2
-
 * case Double.NaN -> d if d.isNaN
 
 * PartialFunction validation

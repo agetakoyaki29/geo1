@@ -1,6 +1,6 @@
-package com.github.agetakoyaki29.geometry.dim2.line
+package com.github.agetakoyaki29.geometry.dim2.figure
 
-import com.github.agetakoyaki29.geometry.dim2.Dim2
+import com.github.agetakoyaki29.geometry.dim2.Point
 
 
 object AABB {

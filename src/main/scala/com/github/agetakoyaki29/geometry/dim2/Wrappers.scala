@@ -2,9 +2,9 @@ package com.github.agetakoyaki29.geometry.dim2
 
 
 object Dim2Wrapper extends Dim2Factory[Dim2Wrapper] {
-  def apply(d: Double): Dim2Wrapper = Vector2(Dim2(d, d))
-  def apply(x: Double, y: Double): Dim2Wrapper = Vector2(Dim2(x, y))
-  def apply(dim2: Dim2): Dim2Wrapper = Vector2(dim2)
+  def apply(d: Double): Dim2Wrapper = Vector(Dim2(d, d))
+  def apply(x: Double, y: Double): Dim2Wrapper = Vector(Dim2(x, y))
+  def apply(dim2: Dim2): Dim2Wrapper = Vector(dim2)
 }
 
 abstract class Dim2Wrapper(protected val wrapped: Dim2)

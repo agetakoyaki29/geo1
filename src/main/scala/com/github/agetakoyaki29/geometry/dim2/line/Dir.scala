@@ -4,7 +4,10 @@ import com.github.agetakoyaki29.geometry.dim2.Dim2
 import com.github.agetakoyaki29.geometry.dim2.Dim2Factory
 import com.github.agetakoyaki29.geometry.Delta
 import org.scalactic.TypeCheckedTripleEquals._
-import com.github.agetakoyaki29.geometry.dim2.Vector2
+import com.github.agetakoyaki29.geometry.dim2.Vector
+import com.github.agetakoyaki29.geometry.dim2.figure.AABB
+import com.github.agetakoyaki29.geometry.dim2.Point
+import com.github.agetakoyaki29.geometry.dim2.figure.Size
 
 
 object Dir extends Dim2Factory[Dir] {
@@ -162,7 +165,7 @@ class DirChomp protected(override protected val wrapped: Dim2) extends Dir(wrapp
 
   override def aabb: AABB = {
     val min = this.mapD2(Math.min(0, _)).asInstanceOf[Point]
-    val max = this.mapD2(Math.max(0, _)).asInstanceOf[Vector2]
+    val max = this.mapD2(Math.max(0, _)).asInstanceOf[Vector]
     new AABB(min, Size(max-min))
   }
 

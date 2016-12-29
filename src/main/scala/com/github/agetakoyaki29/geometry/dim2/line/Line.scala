@@ -1,5 +1,8 @@
 package com.github.agetakoyaki29.geometry.dim2.line
 
+import com.github.agetakoyaki29.geometry.dim2.figure.AABB
+import com.github.agetakoyaki29.geometry.dim2.Point
+
 
 case class Line(val sp: Point, val dir: Dir) {
 

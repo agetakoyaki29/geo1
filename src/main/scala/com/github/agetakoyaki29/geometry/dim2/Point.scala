@@ -1,9 +1,6 @@
-package com.github.agetakoyaki29.geometry.dim2.line
+package com.github.agetakoyaki29.geometry.dim2
 
 import com.github.agetakoyaki29.geometry.Delta
-import com.github.agetakoyaki29.geometry.dim2.Dim2
-import com.github.agetakoyaki29.geometry.dim2.Vector2
-import com.github.agetakoyaki29.geometry.dim2.Dim2Factory
 
 
 object Point extends Dim2Factory[Point] {
@@ -12,7 +9,7 @@ object Point extends Dim2Factory[Point] {
   def apply(dim2: Dim2) = new Point(dim2)
 }
 
-class Point protected(override protected val wrapped: Dim2) extends Vector2(wrapped) {
+class Point protected(override protected val wrapped: Dim2) extends Vector(wrapped) {
 
   override def factory: Dim2Factory[_ <: Point] = Point
 
