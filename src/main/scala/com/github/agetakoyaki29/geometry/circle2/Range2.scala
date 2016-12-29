@@ -2,7 +2,7 @@ package com.github.agetakoyaki29.geometry.circle2
 
 import com.github.agetakoyaki29.geometry.dim2.Dim2Factory
 import com.github.agetakoyaki29.geometry.dim2.Dim2
-import com.github.agetakoyaki29.geometry.line.Point2
+import com.github.agetakoyaki29.geometry.dim2.line.Point
 import com.github.agetakoyaki29.geometry.Delta
 
 
@@ -12,7 +12,7 @@ object Range2 extends Dim2Factory[Range2] {
   def apply(dim2: Dim2) = new Range2(dim2)
 }
 
-class Range2 protected(override protected val wrapped: Dim2) extends Point2(wrapped) {
+class Range2 protected(override protected val wrapped: Dim2) extends Point(wrapped) {
 
   override def factory: Dim2Factory[_ <: Range2] = Range2
 

@@ -1,7 +1,7 @@
-package com.github.agetakoyaki29.geometry.line
+package com.github.agetakoyaki29.geometry.dim2.line
 
 
-trait Figure2 {
+trait Figure {
 //  def same(f: Figure2): Boolean
   
 //  def aabb: AABB2

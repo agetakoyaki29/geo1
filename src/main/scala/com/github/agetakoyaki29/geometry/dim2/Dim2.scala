@@ -4,9 +4,9 @@ import com.github.agetakoyaki29.geometry.Delta
 
 
 object Dim2 extends Dim2Factory[Dim2] {
-  def apply(d: Double): Dim2 = new SimpleD2(d, d)
-  def apply(x: Double, y: Double): Dim2 = new SimpleD2(x, y)
-  def apply(op: Dim2): Dim2 = new SimpleD2(op.x, op.y)
+  def apply(d: Double): Dim2 = new SimpleDim2(d, d)
+  def apply(x: Double, y: Double): Dim2 = new SimpleDim2(x, y)
+  def apply(op: Dim2): Dim2 = new SimpleDim2(op.x, op.y)
 
   val ZERO = this(0, 0)
   val INFINITY = this(Double.PositiveInfinity, Double.PositiveInfinity)
@@ -68,4 +68,4 @@ trait Dim2 extends IndexedSeq[Double] {
 }
 
 
-final class SimpleD2(override val x: Double, override val y: Double) extends Dim2
+final class SimpleDim2(override val x: Double, override val y: Double) extends Dim2
