@@ -79,8 +79,10 @@ class Dir protected(override protected val wrapped: Dim2) extends Point(wrapped)
 
   def intersect(line: Line): Seq[Point] = {
 		if(this isParallelWithDelta line.dir) Nil		// TODO be strict?
-		val t = (line.sp cross line.dir) / (this cross line.dir)
-		Seq(this * t)
+		else {
+  		val t = (line.sp cross line.dir) / (this cross line.dir)
+  		Seq(this * t)
+		}
 	}
 
   def isIntersect(line: Line): Boolean = !(this isParallelWithDelta line.dir)
