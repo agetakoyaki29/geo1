@@ -1,12 +1,13 @@
 package com.github.agetakoyaki29.geometry.dim2.line
 
+
+
+import com.github.agetakoyaki29.geometry.Delta
 import com.github.agetakoyaki29.geometry.dim2.Dim2
 import com.github.agetakoyaki29.geometry.dim2.Dim2Factory
-import com.github.agetakoyaki29.geometry.Delta
-import org.scalactic.TypeCheckedTripleEquals._
+import com.github.agetakoyaki29.geometry.dim2.Point
 import com.github.agetakoyaki29.geometry.dim2.Vector
 import com.github.agetakoyaki29.geometry.dim2.figure.AABB
-import com.github.agetakoyaki29.geometry.dim2.Point
 import com.github.agetakoyaki29.geometry.dim2.figure.Size
 
 
@@ -85,7 +86,7 @@ class Dir protected(override protected val wrapped: Dim2) extends Point(wrapped)
   		println(this crossEq0 line.dir)
   		println(this cross line.dir)
   		println(t)
-  		Seq(this * t)
+  		Seq((Point(this) * t).asInstanceOf[Point])
 		}
 	}
 
