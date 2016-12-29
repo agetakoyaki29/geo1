@@ -3,7 +3,7 @@
 lazy val root = (project in file("."))
   .settings(
     // organization := "com.github",
-    name := "scala geometry",
+    name := "geo1",
     version := "0.0",
     scalaVersion := "2.11.8",
 
