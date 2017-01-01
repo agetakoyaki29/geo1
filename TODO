@@ -19,8 +19,7 @@ NonZero orElse NonInf andThen super.*
 
 * Transform.localize
 
-* Transform.update func
-obj(pos) = np
+* updatedDir, updatedSp
 
 * what happen call intersect when each is same
 
@@ -37,3 +36,4 @@ obj.super[A]
 
 * asInstance is dynamic
 戻り値同型の法則をどうやって実装する？
+CanBuildForm[From, Elem, To]
